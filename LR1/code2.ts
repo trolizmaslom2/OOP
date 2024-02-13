@@ -1,17 +1,17 @@
 
-abstract class Exercise {
+abstract class ExerciseGroup {
     abstract getDescription(): string;
 }
 
 // група "ноги"
-class Legs extends Exercise {
+class Legs extends ExerciseGroup {
     getDescription(): string {
         return 'Legs exercise';
     }
 }
 
 // група "руки"
-class Arm extends Exercise {
+class Arm extends ExerciseGroup {
     getDescription(): string {
         return 'Arm exercise';
     }
@@ -19,19 +19,19 @@ class Arm extends Exercise {
 
 // абстрактна фабрика для створення вправ
 abstract class ExerciseFactory {
-    abstract createExercise(): Exercise;
+    abstract createExercise(): ExerciseGroup;
 }
 
 // фабрика для створення вправ ніг
 class LegsFactory extends ExerciseFactory {
-    createExercise(): Exercise {
+    createExercise(): ExerciseGroup {
         return new Legs();
     }
 }
 
 // фабрика для створення вправ рук
 class ArmFactory extends ExerciseFactory {
-    createExercise(): Exercise {
+    createExercise(): ExerciseGroup {
         return new Arm();
     }
 }
