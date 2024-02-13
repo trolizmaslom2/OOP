@@ -58,7 +58,8 @@ class MembershipFactory {
 
 // приклад використаня фабричного методу
 const factory = new MembershipFactory();
-const basicMembership = factory.createMembership(MembershipType.Premium);
+const basicMembership = factory.createMembership(MembershipType.Basic);
 console.log(basicMembership.getDescription());
 
-
+const goldMembership = factory.createMembership(MembershipType.Gold);
+console.log(goldMembership.getDescription());

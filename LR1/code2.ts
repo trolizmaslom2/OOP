@@ -17,7 +17,7 @@ class Arm extends Exercise {
     }
 }
 
-// fбстрактна фабрика для створення вправ
+// абстрактна фабрика для створення вправ
 abstract class ExerciseFactory {
     abstract createExercise(): Exercise;
 }
