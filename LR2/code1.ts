@@ -37,8 +37,10 @@ class TrainingProgramBuilder implements Builder {
         return this.trainingProgram;
     }
 }
-
-class TrainingProgramPrototype {
+interface Proto {
+    clone();
+}
+class TrainingProgramPrototype implements Proto{
     private prototype: TrainingProgram;
 
     constructor(trainingProgram: TrainingProgram) {
@@ -54,21 +56,14 @@ class TrainingProgramPrototype {
 
 // Приклади використання
 
-// будівельник для  тренуваня
+
 const builder = new TrainingProgramBuilder("Full Body Workout");
-// додаємо вправи
+
 builder
     .addExercise("Squats", "Leg exercise")
     .addExercise("Push-ups", "Upper body exercise");
-
-
-
-// Клонуємо  тренуваня з використанням прототипу та додаєм ще одну вправу в нове тренування
 const clonedProgram = new TrainingProgramPrototype(builder.getResult()).clone();
 clonedProgram.addExercise(new Exercise("Squats", "Leg exercise"));
-
-
-// Відображаємо інформацію про клоновану програму тренувань
 console.log(`Cloned Training Program: ${clonedProgram.name}`);
 console.log("Exercises:");
 clonedProgram.exercises.forEach(exercise => {
