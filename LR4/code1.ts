@@ -30,7 +30,7 @@ class TrainingService {
 interface Command {
     execute(): void;
 }
-class AddTrainingMacroCommand implements Command {
+class AddTrainingCommand implements Command {
     constructor(private service: TrainingService, private newTraining: Training) {}
 
     execute(): void {
@@ -45,20 +45,13 @@ class AddTrainingMacroCommand implements Command {
                 console.log("Adding new training cancelled.");
             }
         } else {
-            // Якщо в цей час немає тренування, просто додати нове
             this.service.addTraining(this.newTraining);
         }
     }
 }
 
-
+//ghbrkfl dbrjyfyyz
 const trainingService = new TrainingService();
-
- //нове тренування
 const newTraining = new Training(4, "Zumba", "20:00");
-
-//додавання тренування з перевіркою наявності іншого в цей час
-const addTrainingMacroCommand = new AddTrainingMacroCommand(trainingService, newTraining);
-
-// Виконуємо макрокоманду
+const addTrainingMacroCommand = new AddTrainingCommand(trainingService, newTraining);
 addTrainingMacroCommand.execute();

@@ -1,10 +1,9 @@
 
-interface Annoncement {
+interface Announcement {
     update(training: string): void;
 }
 
-// користувач виступає як спостерігач
-class User implements Annoncement {
+class User implements Announcement {
     private name: string;
 
     constructor(name: string) {
@@ -16,22 +15,20 @@ class User implements Annoncement {
     }
 }
 
-// обєкт тренування грає роль субєкта
 class TrainingSchedule {
-    private observers: Annoncement[] = [];
+    private observers: Announcement[] = [];
     private upcomingTraining: string = "";
 
-    addObserver(observer: Annoncement): void {
+    addObserver(observer: Announcement): void {
         this.observers.push(observer);
     }
 
     setTraining(training: string): void {
         this.upcomingTraining = training;
-        this.notifyObservers();
+        this.notifyUsers();
     }
 
-    // надіслати всім спостерігачам
-    private notifyObservers(): void {
+    private notifyUsers(): void {
         this.observers.forEach(obs => {
             obs.update(this.upcomingTraining);
         });
@@ -45,7 +42,3 @@ trainingSchedule.addObserver( new User("John"));
 trainingSchedule.addObserver(new User("Alice"));
 
 trainingSchedule.setTraining("Фітнес заняття о 17:00");
-
-// результат:
-// Користувач John отримав сповіщення про найближче тренування: Фітнес заняття о 17:00
-// Користувач Alice отримав сповіщення про найближче тренування: Фітнес заняття о 17:00

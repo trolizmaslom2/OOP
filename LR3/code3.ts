@@ -1,8 +1,6 @@
 interface Command {
     execute(): void;
 }
-
-
 class MarkExerciseCommand implements Command {
     private exerciseName: string;
 
